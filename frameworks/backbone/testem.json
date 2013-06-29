@@ -1,0 +1,14 @@
+{
+  "framework" : "mocha",
+
+  "src_files": [
+	"js/vendor/require.js",
+	"js/vendor/underscore.js",
+	"js/vendor/backbone.js",
+	"js/vendor/jquery.js",
+	"test/lib/**/*.js",
+	"test/fixtures/**/*.js",
+    "test/spec_helper.js",
+    "test/**/*-test.js"
+  ]
+}
