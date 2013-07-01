@@ -1,0 +1,91 @@
+/**
+ * @name Backbone App
+ */
+
+body {
+  color: #222;
+  font: normal 100%/1 sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* @group Header */
+
+.global-header {
+  background: #222;
+  border: 1px solid #ccc;
+  padding: 15px 10px;
+}
+
+.global-header-link {
+  color: #fff;
+  margin: 0 1em;
+  text-decoration: none;
+  text-shadow: 0 1px 3px #000;
+}
+
+/* @end */
+
+/* @group Forms */
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type='text'], input[type='email'], input[type='password'] {
+  line-height: 1.5;
+  margin-bottom: 2em;
+  padding: 0.5em 0;
+  width: 100%;
+}
+
+/* @end */
+
+/* @group Edit Account */
+
+.form-edit {
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  margin: 25px;
+  padding: 0 25px 25px;
+}
+
+/* @end */
+
+/* @group Login */
+
+.form-login {
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  margin: 0 0 0 -175px;
+  padding: 0 25px 25px;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 300px;
+}
+
+/* @end */
+
+/* @group Articles */
+
+.articles-list {
+  list-style: none;
+  margin: 25px;
+  padding: 0;
+}
+
+.articles-list-item {
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+.articles-list-item a {
+  color: #117;
+  text-decoration: none;
+}
+
+/* @end */
