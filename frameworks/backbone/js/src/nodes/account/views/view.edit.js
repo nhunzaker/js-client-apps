@@ -5,7 +5,7 @@
 
 define([
 	'backbone', 
-	'tpl!apps/account/templates/edit.tpl'
+	'tpl!account/templates/edit.tpl'
 ], function(Backbone, template) {
 
 	return Backbone.View.extend({
@@ -16,17 +16,20 @@ define([
 			'submit' : 'update'
 		},
 
-		render: function() {
-			var markup = this.template(this.model.toJSON());
-			this.$el.html(markup);
+		render: function(errors) {
+			var data = _.extend(this.model.toJSON(), {
+				errors: errors || []
+			});
+
+			this.$el.html(this.template(data));
+
 			return this;
 		},
 
 		update: function(e) {
+			e.preventDefault();
 
 			var fields = e.target.elements;
-
-			e.preventDefault();
 
 			var save = this.model.save({
 				username: fields.username.value,
@@ -38,8 +41,8 @@ define([
 				alert("Success!");
 			});
 
-			save.fail(function() {
-				console.error(arguments);
+			save.fail(function(data) {
+				this.render(data.responseJSON.errors);
 			});
 
 		}

@@ -17,15 +17,16 @@ requirejs.config({
 
 		// App
 		application: "src/application",
-		apps: "src/applications",
 		models: "src/models",
 		collections: "src/collections",
 		routers: "src/routers",
 		views: "src/views",
 
 		// Modules
-		account: 'src/applications/account',
-		reader: 'src/applications/reader',
+		nodes: "src/nodes",
+		account: 'src/nodes/account',
+		articles: 'src/nodes/articles',
+		chrome: 'src/nodes/chrome',
 
 		// Plugins
 		"tpl": "plugins/require.tpl"
@@ -35,11 +36,9 @@ requirejs.config({
 		jquery: {
 			exports: "$"
 		},
-
 		underscore: {
 			exports: "_"
 		},
-
 		backbone: {
 			deps: ['jquery', 'underscore'],
 			exports: "Backbone"
@@ -49,4 +48,5 @@ requirejs.config({
 
 require(['application'], function(App){
 	console.log(App);
+	Backbone.history.start();
 });

@@ -5,7 +5,7 @@
 
 define([
 	'backbone', 
-	'tpl!apps/account/templates/header.tpl'
+	'tpl!chrome/templates/header.tpl'
 ], function(Backbone, template) {
 
 	return Backbone.View.extend({
@@ -14,10 +14,13 @@ define([
 
 		initialize: function() {
 			this.listenTo(this.model, 'change', this.render);
+			this.render();
 		},
 
 		render: function() {
-			var markup = this.template(this.model.toJSON());
+			var data = _.extend({ token: false }, this.model.toJSON());
+			var markup = this.template(data);
+
 			this.$el.html(markup);
 			return this;
 		}

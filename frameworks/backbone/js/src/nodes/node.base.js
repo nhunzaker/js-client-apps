@@ -1,6 +1,6 @@
 /**
- * @name App.Base
- * @desc An app is a single point in an application.
+ * @name Node.Base
+ * @desc An node is a single part of an application.
  */
 
 define(['backbone'], function(Backbone) {

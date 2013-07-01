@@ -2,7 +2,10 @@
  * @name View.ArticlesList
  */
 
-define(['backbone', 'tpl!reader/templates/articlesList.tpl'], function(Backbone, template) {
+define([
+	'backbone', 
+	'tpl!articles/templates/articlesList.tpl'
+], function(Backbone, template) {
 
 	return Backbone.View.extend({
 

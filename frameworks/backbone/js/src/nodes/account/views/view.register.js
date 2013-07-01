@@ -5,7 +5,7 @@
 
 define([
 	'backbone', 
-	'tpl!apps/account/templates/register.tpl',
+	'tpl!account/templates/new.tpl',
 	'models/model.user'
 ], function(Backbone, template, User) {
 

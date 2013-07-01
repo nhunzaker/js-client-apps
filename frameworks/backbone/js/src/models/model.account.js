@@ -11,26 +11,31 @@ define(['models/model.user'], function(User) {
 		url: '/account',
 
 		initialize: function() {
-
-			this.on('change:token', function() {
-				console.info("Current user authenticated with token %s", this.get('token'));
-				return this.fetch();
+			this.on({
+				'change:token': this.handleTokenUpdate
 			});
+		},
 
+		handleTokenUpdate: function() {
+			var token = this.get('token');
+
+			if (token) {
+				console.info("Current user authenticated with token %s", token);
+				this.fetch();
+			}
 		},
 
 		setHeaders: function() {
-
 			Backbone.$.ajaxSetup({
 				headers: {
 					"Content-Type": "application/json",
 					"X-User-Token" : this.get('token')
 				}
 			});
-
 		},
 
-		authenticate: function() {
+		authenticate: function(attrs) {
+			this.set(attrs, { silent: true });
 			return this.save({}, {
 				attrs: this.pick('email', 'password'),
 				url: '/session',

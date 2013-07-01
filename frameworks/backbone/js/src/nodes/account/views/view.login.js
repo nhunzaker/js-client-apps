@@ -5,7 +5,7 @@
 
 define([
 	'backbone', 
-	'tpl!apps/account/templates/login.tpl'
+	'tpl!account/templates/login.tpl'
 ], function(Backbone, template) {
 
 	return Backbone.View.extend({
@@ -22,28 +22,33 @@ define([
 			});
 		},
 
-		render: function() {
-			this.$el.html(this.template());
+		render: function(errors) {
+			var data = _.extend(this.model.toJSON(), {
+				errors: errors || []
+			});
+
+			this.$el.html(this.template(data));
+
 			return this;
 		},
 
 		login: function(e) {
+			e.preventDefault();
 
 			var form = e.target;
 
-			e.preventDefault();
-
-			this.model.set({ 
+			var ask = this.model.authenticate({ 
 				email: form.elements.email.value,
 				password: form.elements.password.value
 			});
 
-			var ask = this.model.authenticate();
-
 			ask.done(function() {
-				console.log("success!");
-			});
+				Backbone.trigger("account:authenticated");
+			}.bind(this));
 
+			ask.fail(function(data) {
+				this.render(data.responseJSON.errors);
+			}.bind(this));
 		}
 
 	});

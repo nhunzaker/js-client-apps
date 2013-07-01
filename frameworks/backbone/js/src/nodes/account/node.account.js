@@ -1,15 +1,14 @@
 /**
- * @name App.Account
+ * @name Node.Account
  * @desc Handles account settings and authentication
  */
 
 define([
-	'apps/app.base', 
-	'models/model.account',
-	'apps/account/views/view.header'
-], function(App, Account, Header) {
+	'nodes/node.base', 
+	'models/model.account'
+], function(Node, Account) {
 
-	return App.extend({
+	return Node.extend({
 
 		routes: {
 			'account/edit': 'edit',
@@ -20,25 +19,39 @@ define([
 
 		initialize: function() {
 			this.user = new Account();
-			this.user.set('token', sessionStorage['token']);
-			this.render();
+
+			if (sessionStorage['token']) {
+				this.user.set('token', sessionStorage['token']);
+			}
+
+			if (this.user.isAuthenticated() === false) {
+				this.account.destroyToken();
+			}
 
 			this.user.on('change:token', this.saveToken, this);
+
+			Backbone.on({
+
+				'account:authenticated': function() {
+					this.navigate('/', { trigger: true });
+				},
+				'account:unauthenticated': function() {
+					this.navigate('account/login', { trigger: true });
+				}
+
+			}, this);
+
 		},
 
 		saveToken: function() {
-			sessionStorage['token'] = this.user.get('token');
+			var token = this.user.get('token');
+			token && (sessionStorage['token'] = token);
 		},
 
 		destroyToken: function() {
-			delete sessionStorage['token'];
+			sessionStorage.removeItem('token');
 			this.user.clear();
-		},
-
-		render: function() {
-			this.header = new Header({ model: this.user });
-			this.header.setElement("#header");
-			this.header.render();
+			Backbone.trigger('account:unauthenticated');
 		},
 
 		noSession: function() {
@@ -85,7 +98,6 @@ define([
 
 		logout: function() {
 			this.destroyToken();
-			this.navigate('/', { trigger: true });
 		},
 
 		register: function() {
