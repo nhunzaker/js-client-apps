@@ -4,25 +4,27 @@
  */
 
 define([
-	'backbone',
-	'account/node.account',
-	'articles/node.articles',
-	'chrome/node.chrome'
-], function(Backbone, Account, Articles, Chrome) {
+	'backbone', 
+	'marionette'
+], function(Backbone, Marionette, Chrome) {
 
-	var Application = Backbone.View.extend({
-
-		el: document.body,
-
-		initialize: function() {
-			this.account = new Account();
-			this.articles = new Articles();
-			this.chrome = new Chrome({
-				model: this.account.user
-			});
+	Marionette.$.ajaxSetup({
+		headers: {
+			"Content-Type": "application/json"
 		}
-
 	});
 
-	return new Application();
+	var Application = new Marionette.Application();
+
+	Application.on('initialize:after', function() {
+		Backbone.history.start();
+	});
+
+	Application.addRegions({
+		header : "#header",
+		modals : "#modals",
+		body   : "#body"
+	});
+
+	return Application;
 });

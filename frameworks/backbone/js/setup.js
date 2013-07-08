@@ -7,29 +7,26 @@
 requirejs.config({
 
 	baseUrl: "/js",
-	urlArgs: "bust=" +  (new Date()).getTime(),
-	paths: {
 
-		// Backbone
+	urlArgs: "bust=" + (+new Date()),
+
+	paths: {
+		// Vendor
 		backbone: "vendor/backbone",
+		handlebars: "vendor/handlebars",
 		jquery: "vendor/jquery",
+		marionette: "vendor/marionette",
 		underscore: "vendor/underscore",
 
-		// App
-		application: "src/application",
-		models: "src/models",
-		collections: "src/collections",
-		routers: "src/routers",
-		views: "src/views",
-
-		// Modules
-		nodes: "src/nodes",
-		account: 'src/nodes/account',
-		articles: 'src/nodes/articles',
-		chrome: 'src/nodes/chrome',
-
 		// Plugins
-		"tpl": "plugins/require.tpl"
+		text: "vendor/text",
+		hbs: "vendor/hbs",
+
+		// App
+		application : "src/application",
+		articles : "src/articles",
+		account : "src/account",
+		chrome : "src/chrome"
 	},
 
 	shim: {
@@ -42,11 +39,19 @@ requirejs.config({
 		backbone: {
 			deps: ['jquery', 'underscore'],
 			exports: "Backbone"
+		},
+		marionette : {
+			deps : ['backbone'],
+			exports : 'Marionette'
 		}
 	}
 });
 
-require(['application'], function(App){
-	console.log(App);
-	Backbone.history.start();
+require([
+	'application',
+	'account/account',
+	'chrome/chrome',
+	'articles/articles'
+], function(App){
+	App.start();
 });

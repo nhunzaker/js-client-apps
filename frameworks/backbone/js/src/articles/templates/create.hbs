@@ -1,0 +1,19 @@
+<form class="form-create">
+	<h3>Submit a new article</h3>
+	<ul class="js-errors errors-list">
+		{{#each errors}}
+			<li class="error">{{this}}</li>
+		{{/each}}
+	</ul>
+	<div>
+		<label for="title">Title</label>
+		<input type="url" name="title" />
+	</div>
+	<div>
+		<label for="link">Link</label>
+		<input type="url" name="link" />
+	</div>
+	<div>
+		<input type="submit" value="Save"/>
+	</div>
+</form>

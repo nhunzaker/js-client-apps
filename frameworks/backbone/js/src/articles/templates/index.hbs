@@ -1,0 +1,9 @@
+<p><a href="{{article_create_url}}">Submit a new article</a></p>
+<ul class="articles-list">
+	{{#each items}}
+		<li class="articles-list-item">
+			<h4><a href="{{url}}">{{title}}</a></h4>
+			<small>Points: {{points}}</small>
+		</li>
+	{{/each}}
+</ul>
