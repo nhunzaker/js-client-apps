@@ -5,16 +5,18 @@
 
 define([
 	'application',
-	'./views/index',
 	'./router',
 	'./helpers'
-], function(App, ArticlesList, ArticlesRouter, Handlebars) {
+], function(App, ArticlesRouter, Handlebars) {
 
 	var ArticlesModule = App.module("Articles");
 
 	ArticlesModule.addInitializer(function() {
 		this.router = new ArticlesRouter();
-		App.body.show(new ArticlesList());
+	});
+
+	App.commands.setHandler('articles:visit', function(id) {
+		this.router.navigate('articles/' + id, { trigger: true });
 	});
 
 	return ArticlesModule;

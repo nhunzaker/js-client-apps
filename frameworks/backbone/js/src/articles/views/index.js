@@ -4,15 +4,16 @@
 
 define([
 	'marionette',
-	'../collections/articles',
+	'./parts/article',
 	'hbs!articles/templates/index.hbs'
-], function(Marionette, Articles, template) {
+], function(Marionette, ArticleView, template) {
 
-	return Marionette.ItemView.extend({
+	return Marionette.CompositeView.extend({
 		template: template,
+		itemView: ArticleView,
+		itemViewContainer: '.articles-list',
+
 		initialize: function() {
-			this.collection = this.collection || new Articles();
-			this.listenTo(this.collection, 'add remove', this.render);
 			this.collection.fetch();
 		}
 	});

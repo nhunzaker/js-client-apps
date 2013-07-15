@@ -1,0 +1,11 @@
+<h4 class="article-title">
+	{{#with_current_user}}
+		<span class="upvote">&#9650;</span> 
+	{{/with_current_user}}
+
+	<a href="{{url}}">{{title}}</a>
+</h4>
+<small>
+	Points: {{points}} |
+	<a href="#/articles/{{id}}">Comments</a>
+</small>

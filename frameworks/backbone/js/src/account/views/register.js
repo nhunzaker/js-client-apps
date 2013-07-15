@@ -4,18 +4,13 @@
  */
 
 define([
-	'chrome/views/form', 
+	'account/views/login', 
 	'../models/user',
-	'hbs!account/templates/new.hbs'
-], function(Form, User, template) {
+	'hbs!account/templates/register.hbs'
+], function(Login, User, template) {
 
-	return Form.extend({
+	return Login.extend({
 		template: template,
-
-		render: function() {
-			this.$el.html(this.template());
-			return this;
-		},
 
 		handleSubmission: function(e) {
 			if (e instanceof $.Event) e.preventDefault();
@@ -28,7 +23,6 @@ define([
 				this.model.authenticate();
 			}.bind(this));
 		}
-
 	});
 
 });

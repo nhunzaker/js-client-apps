@@ -25,9 +25,16 @@ define(['marionette'], function(Marionette) {
 			this.ui.errors.append("<li class='error'>" + reason + "</li>");
 		},
 
-		toJSON: function() {
+		toJSON: function(accepts) {
 			var elements = _(this.ui.form.get(0).elements);
-			return _.object(elements.pluck('name'), elements.pluck('value'));
+			var data = {};
+
+			elements.each(function(el) {
+				if (!el.name) return;
+				data[el.name] = el.value;
+			});
+
+			return data;
 		},
 
 		handleSubmission: function(e) {
@@ -35,7 +42,7 @@ define(['marionette'], function(Marionette) {
 
 			var data = this.toJSON();
 
-			return this.model[this.action](data);
+			return this.model[this.action](data, { wait: true });
 		}
 
 	});

@@ -5,7 +5,13 @@
 define(['handlebars'], function(Handlebars) {
 
 	Handlebars.registerHelper("current_user", function() {
-		require('application').request('current_user');
+		return require('application').request('current_user').id;
+	});
+
+	Handlebars.registerHelper("with_current_user", function(options) {
+		var user = require('application').request('current_user');
+		if (user.isNew()) return '';
+		return options.fn(user.toJSON());
 	});
 
 	Handlebars.registerHelper("account_edit_url", function() {
@@ -18,6 +24,10 @@ define(['handlebars'], function(Handlebars) {
 
 	Handlebars.registerHelper('logout_url', function() {
 		return "#/account/logout";
+	});
+
+	Handlebars.registerHelper('registration_url', function() {
+		return "#/account/register";
 	});
 
 });

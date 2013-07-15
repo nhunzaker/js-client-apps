@@ -11,8 +11,7 @@ define(['backbone'], function(Backbone) {
 
 		defaults: {
 			email: "no@email.com",
-			username: "No User",
-			token: false
+			username: "No User"
 		}
 
 	});

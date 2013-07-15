@@ -4,12 +4,19 @@
 
 define([
 	'chrome/views/form',
-	'articles/models/article',
 	'hbs!articles/templates/create.hbs'
-], function(Form, Article, template) {
+], function(Form, template) {
 
 	return Form.extend({
-		template: template
+		template: template,
+
+		modelEvents: {
+			'change': 'visitArticle'
+		},
+
+		visitArticle: function() {
+			require('application').execute('articles:visit', this.id);
+		}
 	});
 
 });

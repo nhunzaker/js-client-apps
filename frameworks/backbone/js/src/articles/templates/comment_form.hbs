@@ -1,0 +1,13 @@
+{{#with_current_user}}
+<form class="form-comment">
+	<h3>Add a new comment</h3>
+	<ul class="js-errors errors-list"></ul>
+
+	<input type="hidden" name="user_id" value="{{id}}"></input>
+	<textarea class="form-comment-body" name="body"></textarea>
+
+	<div class="form-comment-actions">
+		<input type="submit" value="Add Comment"> <small>(As {{username}})</small>
+	</div>
+</form>
+{{/with_current_user}}

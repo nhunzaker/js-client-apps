@@ -5,8 +5,9 @@
 
 define([
 	'backbone', 
-	'marionette'
-], function(Backbone, Marionette, Chrome) {
+	'marionette',
+	'src/helpers'
+], function(Backbone, Marionette) {
 
 	Marionette.$.ajaxSetup({
 		headers: {

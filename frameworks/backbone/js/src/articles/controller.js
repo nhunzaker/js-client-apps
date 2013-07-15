@@ -5,13 +5,37 @@
 define([
 	'marionette', 
 	'application',
-	'./views/create'
-], function(Marionette, App, CreateView) {
+	'./models/article',
+	'./collections/articles',
+	'./collections/comments',
+	'./views/index',
+	'./views/create',
+	'./views/show'
+], function(Marionette, App, Article, Articles, Comments, IndexView, CreateView, ShowView) {
 
 	return Marionette.Controller.extend({
+		index: function() {
+			var articles = new Articles();
+			var view = new IndexView({ collection: articles });
+
+			App.body.show(view);
+		},
 
 		create: function() {
-			App.body.show(new CreateView());
+			var view = new CreateView({ model: new Article() });
+			App.body.show(view);
+		},
+
+		show: function(id) {
+			var article = new Article({ id: id });
+			var comments = new Comments({ article: article });
+
+			article.fetch();
+			comments.fetch();
+
+			var view = new ShowView({ model: article, collection: comments });
+
+			App.body.show(view);
 		}
 
 	});

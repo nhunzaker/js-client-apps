@@ -13,7 +13,11 @@ define([
 		modelEvents: {
 			'invalid' : 'reportError',
 			'request:authentication' : 'clearErrors',
-			'sync:authentication' : 'remove'
+			'sync:authentication' : 'goHome'
+		},
+		goHome: function() {
+			window.location.hash = '';
+			this.remove();
 		}
 	});
 
