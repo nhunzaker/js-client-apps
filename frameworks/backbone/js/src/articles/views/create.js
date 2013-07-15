@@ -15,7 +15,7 @@ define([
 		},
 
 		visitArticle: function() {
-			require('application').execute('articles:visit', this.id);
+			require('application').execute('articles:visit', this.model.id);
 		}
 	});
 

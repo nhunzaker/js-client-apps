@@ -14,6 +14,15 @@ hr {
   border-bottom: 1px solid #ccc;
 }
 
+h2 small {
+  color: #999;
+  font-weight: normal;
+}
+
+h2 a {
+  text-decoration: none;
+}
+
 /* @group Header */
 
 .global-header {
@@ -205,4 +214,12 @@ button:hover, input[type='submit']:hover {
 
 .upvote:hover {
   opacity: 1;
+}
+
+article {
+  padding: 1%;
+}
+
+.pull-right {
+  float: right;
 }

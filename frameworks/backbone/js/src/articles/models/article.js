@@ -12,7 +12,6 @@ define(['backbone'], function(Backbone) {
 		},
 
 		defaults: {
-			user_id: null,
 			title: 'Not Title Given',
 			url: 'No URL Given'
 		},

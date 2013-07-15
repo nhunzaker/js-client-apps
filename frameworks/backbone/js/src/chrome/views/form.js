@@ -12,6 +12,11 @@ define(['marionette'], function(Marionette) {
 			'submit' : 'handleSubmission'
 		},
 
+		modelEvents: {
+			'invalid' : 'reportError',
+			'request' : 'clearErrors'
+		},
+
 		ui: {
 			form: 'form',
 			errors: '.errors-list'
@@ -21,8 +26,12 @@ define(['marionette'], function(Marionette) {
 			this.ui.errors.empty();
 		},
 
-		reportError: function(reason) {
-			this.ui.errors.append("<li class='error'>" + reason + "</li>");
+		reportError: function(reasons) {
+			this.clearErrors();
+
+			_.each(reasons, function(reason) {
+				this.ui.errors.append("<li class='error'>" + reason + "</li>");
+			}, this);
 		},
 
 		toJSON: function(accepts) {

@@ -16,7 +16,7 @@ define([
 	});
 
 	App.commands.setHandler('articles:visit', function(id) {
-		this.router.navigate('articles/' + id, { trigger: true });
+		ArticlesModule.router.navigate('articles/' + id, { trigger: true });
 	});
 
 	return ArticlesModule;
