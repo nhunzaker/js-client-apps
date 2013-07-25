@@ -1,2 +1,8 @@
+{{#with_current_user}}
+	<span class="upvote">&#9650;</span>
+{{/with_current_user}}
+
 <p>{{body}}</p>
-<p><small>Points: {{points}}. <a href="#">Reply to this comment</a></small></p>
+<p><small>Points: {{points}}. <a href="#" class="js-reply">Reply to this comment</a></small></p>
+<div class="form-comment-wrapper" style="display: none;"></div>
+<div class="comments-list-wrapper"></div>

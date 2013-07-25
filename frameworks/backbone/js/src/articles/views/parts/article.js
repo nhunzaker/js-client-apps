@@ -16,9 +16,12 @@ define([
 			'click .upvote' : 'vote'
 		},
 
+		modelEvents: {
+			'change' : 'render'
+		},
+
 		vote: function() {
 			this.model.upvote();
 		}
 	});
-
 });

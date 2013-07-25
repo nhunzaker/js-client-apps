@@ -2,21 +2,39 @@
  * @name Collection.Comments
  */
 
-define(['backbone', '../models/comment'], function(Backbone, Comment) {
+define([
+	'backbone',
+	'../models/article',
+	'../models/comment'
+], function(Backbone, Article, Comment) {
 
 	return Backbone.Collection.extend({
 		model: Comment,
 
-		initialize: function(options) {
-			if ('article' in options) {
-				this.article = options.article;
+		comparator: function(a, b) {
+			return a.get('points') < b.get('points')
+		},
+
+		initialize: function init(models, options) {
+			if ('parent' in options) {
+				this.parent = options.parent;
 			} else {
-				throw Error("Comments collection requires an article");
+				throw Error("Expected a parent option!");
 			}
 		},
 
 		url: function() {
-			return '/articles/' + this.article.id + '/comments';
+			var type = false
+
+			if (this.parent instanceof Article) {
+				type = 'articles'
+			} else if (this.parent instanceof Comment) {
+				type = 'comments'
+			} else {
+				throw Error("Expected an Article or Comment model!");
+			}
+
+			return '/' + type + '/' + this.parent.id + '/comments';
 		}
 	});
 

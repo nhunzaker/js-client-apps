@@ -5,7 +5,12 @@
 define(['marionette', './comment'], function(Marionette, CommentView) {
 
 	return Marionette.CollectionView.extend({
-		itemView: CommentView
+		tagName: 'ul',
+		className: 'articles-list comments-list',
+		itemView: CommentView,
+		collectionEvents: {
+			'sort' : 'render'
+		}
 	});
 
 });

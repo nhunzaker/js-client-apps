@@ -1,11 +1,12 @@
 <h4 class="article-title">
 	{{#with_current_user}}
-		<span class="upvote">&#9650;</span> 
+		<span class="upvote">&#9650;</span>
 	{{/with_current_user}}
 
-	<a href="{{url}}">{{title}}</a>
+	{{link url title}}
 </h4>
 <small>
-	Points: {{points}} |
-	<a href="#/articles/{{id}}">Comments</a>
+	{{pluralize points "points" "point"}}
+	by someone {{moment created_at}} |
+	{{link "{{article_url id}}" "Comments"}}
 </small>

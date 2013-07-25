@@ -13,6 +13,10 @@ define([
 		itemView: ArticleView,
 		itemViewContainer: '.articles-list',
 
+		collectionEvents: {
+			'sort' : 'render'
+		},
+
 		initialize: function() {
 			this.collection.fetch();
 		}

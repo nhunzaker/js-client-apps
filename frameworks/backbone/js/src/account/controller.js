@@ -3,7 +3,7 @@
  */
 
 define([
-	'marionette', 
+	'marionette',
 	'application',
 	'./views/login',
 	'./views/register',

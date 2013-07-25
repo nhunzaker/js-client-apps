@@ -223,3 +223,15 @@ article {
 .pull-right {
   float: right;
 }
+
+/* @group Comments List */
+
+.comments-list > li {
+  padding: 5px 1%;
+}
+
+.comments-list .comments-list li {
+  padding-left: 45px;
+}
+
+/* @end */

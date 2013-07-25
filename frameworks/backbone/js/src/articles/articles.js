@@ -7,7 +7,7 @@ define([
 	'application',
 	'./router',
 	'./helpers'
-], function(App, ArticlesRouter, Handlebars) {
+], function(App, ArticlesRouter) {
 
 	var ArticlesModule = App.module("Articles");
 

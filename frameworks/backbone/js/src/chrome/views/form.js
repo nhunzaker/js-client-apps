@@ -7,7 +7,7 @@ define(['marionette'], function(Marionette) {
 
 	return Marionette.ItemView.extend({
 		action: 'save',
-
+		patch: false,
 		events: {
 			'submit' : 'handleSubmission'
 		},
@@ -51,7 +51,7 @@ define(['marionette'], function(Marionette) {
 
 			var data = this.toJSON();
 
-			return this.model[this.action](data, { wait: true });
+			return this.model[this.action](data, { wait: true, patch: this.patch });
 		}
 
 	});

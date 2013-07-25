@@ -1,13 +1,16 @@
 /**
- * @name Model.Comment
+ * @name Comment
+ * @extends Votable
  */
 
-define(['backbone'], function(Backbone) {
+define(['articles/models/votable'], function(Votable) {
 
-	return Backbone.Model.extend({
+	return Votable.extend({
+		urlRoot: '/comments',
 		defaults: {
 			user_id: null,
 			body: 'Not Body Given'
 		}
 	});
+
 });

@@ -23,7 +23,7 @@ define([
 
 		regions: {
 			'form' : '.form-comment-wrapper',
-			'comments' : '.comments-list'
+			'comments' : '.comments-list-wrapper'
 		},
 
 		onDomRefresh: function() {

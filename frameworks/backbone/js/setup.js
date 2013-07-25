@@ -1,6 +1,6 @@
 /**
  * @name RequireJS Setup
- * @desc Responsible for setting up requirejs, 
+ * @desc Responsible for setting up requirejs,
  *      then loading the main app
  */
 
@@ -17,6 +17,7 @@ requirejs.config({
 		jquery: "vendor/jquery",
 		marionette: "vendor/marionette",
 		underscore: "vendor/underscore",
+		moment: "vendor/moment",
 
 		// Plugins
 		text: "vendor/text",
@@ -32,6 +33,9 @@ requirejs.config({
 	shim: {
 		jquery: {
 			exports: "$"
+		},
+		moment: {
+			exports: "moment"
 		},
 		underscore: {
 			exports: "_"

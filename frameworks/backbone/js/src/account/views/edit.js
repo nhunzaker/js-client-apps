@@ -4,13 +4,14 @@
  */
 
 define([
-	'chrome/views/form', 
+	'chrome/views/form',
 	'hbs!account/templates/edit.hbs'
 ], function(Form, template) {
 	return Form.extend({
 		template: template,
 		modelEvents: {
 			'request' : 'clearErrors'
-		}
+		},
+		patch: true
 	});
 });

@@ -8,4 +8,8 @@ define(['handlebars'], function(Handlebars) {
 		return "#/articles/create";
 	});
 
+	Handlebars.registerHelper("article_url", function(id) {
+		return "#/articles/" + id;
+	});
+
 });

@@ -1,11 +1,12 @@
 <article>
-	<h2><a href="{{url}}">{{title}}</a> <small>{{url}}</small></h2>
-	<small>Submitted on <b>{{created_at}}</b></small>
+	<h2>{{link url title }} <small>({{host url}})</small></h2>
+	<small>
+		{{pluralize points "points" "point"}}
+		by someone <b>{{moment created_at}}</b>
+	</small>
 
 	<hr>
 
 	<div class="form-comment-wrapper"></div>
-
-	<ol class="comments-list articles-list"></ol>
-
+    <div class="comments-list-wrapper"></div>
 </article>

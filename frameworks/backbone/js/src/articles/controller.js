@@ -3,7 +3,7 @@
  */
 
 define([
-	'marionette', 
+	'marionette',
 	'application',
 	'./models/article',
 	'./collections/articles',
@@ -28,7 +28,7 @@ define([
 
 		show: function(id) {
 			var article = new Article({ id: id });
-			var comments = new Comments({ article: article });
+			var comments = new Comments([], { parent: article });
 
 			article.fetch();
 			comments.fetch();

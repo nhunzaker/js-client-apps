@@ -11,7 +11,9 @@ define(['handlebars'], function(Handlebars) {
 	Handlebars.registerHelper("with_current_user", function(options) {
 		var user = require('application').request('current_user');
 		if (user.isNew()) return '';
-		return options.fn(user.toJSON());
+		var context = user.toJSON();
+		context.origin = this;
+		return options.fn(context);
 	});
 
 	Handlebars.registerHelper("account_edit_url", function() {
