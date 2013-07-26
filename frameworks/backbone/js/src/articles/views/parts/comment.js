@@ -5,10 +5,10 @@
 
 define([
 	'marionette',
-	'./comment_form',
+	'./comment_reply',
 	'articles/collections/comments',
 	'hbs!articles/templates/comment.hbs'
-], function(Marionette, Form, CommentsCollection, template) {
+], function(Marionette, ReplyForm, CommentsCollection, template) {
 
 	return Marionette.Layout.extend({
 		attributes: function() {
@@ -33,14 +33,8 @@ define([
 		},
 
 		addCommentForm: function() {
-			this.form.show(new Form({
-				collection: this.collection
-			}));
-
-			this.form.currentView.on('success', function(m) {
-				this.hideForm();
-				window.scrollTo(0, $("[data-comment-id=" + m.id + "]").offset().top);
-			}.bind(this));
+			var form = new ReplyForm({ collection: this.collection })
+			this.form.show(form);
 		},
 
 		addChildComments: function() {

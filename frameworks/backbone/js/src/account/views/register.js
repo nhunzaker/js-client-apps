@@ -4,7 +4,7 @@
  */
 
 define([
-	'account/views/login', 
+	'account/views/login',
 	'../models/user',
 	'hbs!account/templates/register.hbs'
 ], function(Login, User, template) {
@@ -12,7 +12,7 @@ define([
 	return Login.extend({
 		template: template,
 
-		handleSubmission: function(e) {
+		onSubmission: function(e) {
 			if (e instanceof $.Event) e.preventDefault();
 
 			var user = new User(this.toJSON());

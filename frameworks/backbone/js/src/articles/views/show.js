@@ -29,10 +29,6 @@ define([
 		onDomRefresh: function() {
 			this.comments.show(new Comments({ collection: this.collection }));
 			this.form.show(new Form({ collection: this.collection }));
-
-			this.form.currentView.on('success', function(m) {
-				window.scrollTo(0, $("[data-comment-id=" + m.id + "]").offset().top);
-			});
 		}
 
 	});

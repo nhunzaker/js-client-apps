@@ -4,7 +4,7 @@
  */
 
 define([
-	'chrome/views/form', 
+	'chrome/views/form',
 	'hbs!account/templates/login.hbs'
 ], function(Form, template) {
 	return Form.extend({

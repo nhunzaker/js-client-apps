@@ -9,7 +9,8 @@ define(['marionette'], function(Marionette) {
 		action: 'save',
 		patch: false,
 		events: {
-			'submit' : 'handleSubmission'
+			'submit'  : 'onSubmission',
+			'success' : 'onSuccess'
 		},
 
 		modelEvents: {
@@ -46,12 +47,22 @@ define(['marionette'], function(Marionette) {
 			return data;
 		},
 
-		handleSubmission: function(e) {
+		onSubmission: function(e) {
 			if (e instanceof $.Event) e.preventDefault();
 
 			var data = this.toJSON();
 
-			return this.model[this.action](data, { wait: true, patch: this.patch });
+			return this.model[this.action](data, {
+				wait: true,
+				patch: this.patch,
+				success: function(model) {
+					this.trigger('success', model);
+				}.bind(this)
+			});
+		},
+
+		onSuccess: function() {
+			// noop
 		}
 
 	});

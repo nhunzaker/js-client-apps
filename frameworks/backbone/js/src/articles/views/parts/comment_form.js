@@ -10,16 +10,31 @@ define([
 	return Form.extend({
 		template: template,
 
-		handleSubmission: function(e) {
+		goToComment: function(id) {
+			window.scrollTo(0, $("[data-comment-id=" + model.id + "]").offset().top);
+		},
+
+		onSuccess: function(model) {
+			this.render();
+			this.goToComment(model.id);
+		},
+
+		onSubmission: function(e) {
 			if (e instanceof $.Event) e.preventDefault();
 
-			var ask = this.collection.create(this.toJSON(), {
+			var data = this.toJSON();
+
+			return this.collection.create(data, {
 				wait: true,
+				url: this.collection.url(),
 				success: function(model) {
-					this.render();
-					this.trigger('success', model);
-				}.bind(this)
+					this.$el.trigger('success', model);
+				}.bind(this),
+				error: function() {
+					console.error(arguments);
+				}
 			});
 		}
 	});
+
 });
