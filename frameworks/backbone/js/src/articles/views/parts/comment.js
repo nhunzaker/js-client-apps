@@ -12,15 +12,17 @@ define([
 
 	return Marionette.Layout.extend({
 		attributes: function() {
-			return { "data-comment-id": this.model.id };
+			return {
+				"class" : "articles-list-item",
+				"data-comment-id": this.model.id
+			};
 		},
-		className: "articles-list-item",
 		tagName: 'li',
 		template: template,
 
 		events: {
-			"click .js-reply": 'showForm',
-			'click .upvote' : 'vote'
+			"click .js-reply"  : 'showForm',
+			'click .js-upvote' : 'vote'
 		},
 
 		modelEvents: {
@@ -46,8 +48,6 @@ define([
 
 		onDomRefresh: function() {
 			this.collection = new CommentsCollection([], { parent: this.model });
-			this.collection.fetch();
-
 			this.addCommentForm();
 			this.addChildComments();
 		},

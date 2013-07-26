@@ -6,19 +6,15 @@ define([
 	'marionette',
 	'application',
 	'./models/article',
-	'./collections/articles',
 	'./collections/comments',
 	'./views/index',
 	'./views/create',
 	'./views/show'
-], function(Marionette, App, Article, Articles, Comments, IndexView, CreateView, ShowView) {
+], function(Marionette, App, Article, Comments, IndexView, CreateView, ShowView) {
 
 	return Marionette.Controller.extend({
 		index: function() {
-			var articles = new Articles();
-			var view = new IndexView({ collection: articles });
-
-			App.body.show(view);
+			App.body.show(new IndexView());
 		},
 
 		create: function() {
@@ -28,16 +24,13 @@ define([
 
 		show: function(id) {
 			var article = new Article({ id: id });
-			var comments = new Comments([], { parent: article });
 
-			article.fetch();
-			comments.fetch();
-
-			var view = new ShowView({ model: article, collection: comments });
+			var view = new ShowView({
+				model      : article,
+				collection : new Comments([], { parent: article })
+			});
 
 			App.body.show(view);
 		}
-
 	});
-
 });

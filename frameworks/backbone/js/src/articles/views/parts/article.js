@@ -13,7 +13,7 @@ define([
 		template: template,
 
 		events: {
-			'click .upvote' : 'vote'
+			'click .js-upvote' : 'vote'
 		},
 
 		modelEvents: {

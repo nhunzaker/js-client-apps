@@ -23,6 +23,10 @@ define([
 		return AccountModule.user;
 	});
 
+	App.reqres.setHandler('current_user?', function() {
+		return !AccountModule.user.isNew();
+	});
+
 	App.commands.setHandler('account:session:destroy', function() {
 		AccountModule.user.destroyToken();
 	});

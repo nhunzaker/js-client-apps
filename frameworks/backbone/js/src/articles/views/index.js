@@ -5,8 +5,9 @@
 define([
 	'marionette',
 	'./parts/article',
+	'articles/collections/articles',
 	'hbs!articles/templates/index.hbs'
-], function(Marionette, ArticleView, template) {
+], function(Marionette, ArticleView, ArticlesCollection, template) {
 
 	return Marionette.CompositeView.extend({
 		template: template,
@@ -18,6 +19,7 @@ define([
 		},
 
 		initialize: function() {
+			this.collection = new ArticlesCollection();
 			this.collection.fetch();
 		}
 	});

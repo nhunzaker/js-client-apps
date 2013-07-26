@@ -21,6 +21,8 @@ define([
 			} else {
 				throw Error("Expected a parent option!");
 			}
+
+			this.fetch();
 		},
 
 		url: function() {

@@ -10,6 +10,9 @@ define(['articles/models/votable'], function(Votable) {
 		defaults: {
 			title: 'Not Title Given',
 			url: 'No URL Given'
+		},
+		initialize: function() {
+			this.fetch();
 		}
 	});
 
