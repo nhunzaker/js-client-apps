@@ -4,7 +4,7 @@
  */
 
 define([
-	'backbone', 
+	'backbone',
 	'marionette',
 	'src/helpers'
 ], function(Backbone, Marionette) {

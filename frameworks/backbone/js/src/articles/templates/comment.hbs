@@ -1,6 +1,14 @@
 {{upvote_link}}
 
 <p>{{body}}</p>
-<p><small>Points: {{points}}. <a href="#" class="js-reply">Reply to this comment</a></small></p>
+<p>
+	<small>Points: {{points}}.
+	{{#with_current_user}}
+		<a href="#" class="js-reply">Reply to this comment.</a>
+	{{else}}
+		<a href="{{login_url}}">Login to reply</a>.
+	{{/with_current_user}}
+    </small>
+</p>
 <div class="form-comment-wrapper" style="display: none;"></div>
 <div class="comments-list-wrapper"></div>

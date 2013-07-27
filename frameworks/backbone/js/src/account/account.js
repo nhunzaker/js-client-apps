@@ -29,6 +29,7 @@ define([
 
 	App.commands.setHandler('account:session:destroy', function() {
 		AccountModule.user.destroyToken();
+		AccountModule.router.navigate("/", { trigger: true })
 	});
 
 	return AccountModule;
