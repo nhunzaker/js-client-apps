@@ -15,7 +15,7 @@ define([
 			return a.get('points') < b.get('points')
 		},
 
-		initialize: function init(models, options) {
+		initialize: function (models, options) {
 			if ('parent' in options) {
 				this.parent = options.parent;
 			} else {

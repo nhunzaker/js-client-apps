@@ -13,8 +13,9 @@ define([
 
 		template: template,
 
-		events: {
-			'dom:refresh' : 'setupRegions'
+		onInitializeAfter: function() {
+			this.commentsView = new Comments({ collection: this.collection })
+			this.formView  = new Form({ collection: this.collection })
 		},
 
 		modelEvents: {
@@ -27,8 +28,8 @@ define([
 		},
 
 		onDomRefresh: function() {
-			this.comments.show(new Comments({ collection: this.collection }));
-			this.form.show(new Form({ collection: this.collection }));
+			this.comments.show(this.commentsView);
+			this.form.show(this.formView);
 		}
 
 	});
